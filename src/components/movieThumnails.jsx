@@ -129,7 +129,7 @@ const MovieThumbnailsHome = () => {
 
             {hpThumbnailmovies.length > 0 && (
 
-                <div className="mt-10 flex justify-center gap-4 flex-wrap pl-15 pr-15 animate-fade-up animate-once animate-ease-linear">
+                <div className="mt-10 flex justify-center gap-6 flex-wrap pl-15 pr-15 animate-fade-up animate-once animate-ease-linear">
                     {hpThumbnailmovies.map((movie, index) => (
 
                         <div key={index} className="w-60 h-84 bg-tranparent cursor-pointer shadow-md ">

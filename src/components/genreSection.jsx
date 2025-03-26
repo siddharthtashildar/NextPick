@@ -9,7 +9,7 @@ const GenreSection = () =>{
         
         <div className="mt-20 animate-fade-up animate-once animate-ease-linear">
                 <p className="text-xs text-[#fca311]">CATEGORY</p>
-                <h2 className="text-lg font-bold"> CHoose your favourite kind of movie</h2>
+                <h2 className="text-lg font-bold"> Explore by Genre</h2>
         </div>
         <div className="mt-10">
             <div className="mt-10 flex justify-center gap-4 items-center flex-wrap pl-15 pr-15">

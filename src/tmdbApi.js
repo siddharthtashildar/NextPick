@@ -1,15 +1,15 @@
 import axios from "axios";
 
 
-// const API_KEY = "ab8159b0d55ad9bdf006e8befb5c385"
 
 
 
 
-const TMDB_ACCESS_TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhYjgxNTliMGQ1NWFkZDliZGYwMDZlOGJlZmI1YzM4NSIsIm5iZiI6MTc0MjczMzEzNi4xOTEsInN1YiI6IjY3ZGZmZjUwNGNlMDdkNjg0ZTA3ZDFhZiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.sOOPtYFzzNVlfqiODQVtecC8rgp6AcMpf2gW2TQgxQc"; // 🔹 Replace with your TMDB Bearer Token
+
+const TMDB_ACCESS_TOKEN = import.meta.env.VITE_TMDB_KEY;
 
 const tmdbApi = axios.create({
-  baseURL: "https://api.themoviedb.org/3",
+  baseURL: import.meta.env.VITE_TMDB_BASEURL,
   headers: {
     accept: "application/json",
     Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
