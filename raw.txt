@@ -1,0 +1,94 @@
+import React, { useEffect, useState } from "react";
+import { fetchFiveMovies } from "../tmdbApi";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+
+const Carousel = () => {
+  const [movies, setMovies] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const getMovies = async () => {
+      const data = await fetchFiveMovies();
+      setMovies(data);
+    };
+
+    getMovies();
+  }, []);
+
+  // Handle Next and Previous Clicks
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % movies.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? movies.length - 1 : prevIndex - 1
+    );
+  };
+
+  return (
+    <div className="relative w-full h-screen overflow-hidden">
+      {movies.length > 0 && (
+        <>
+
+          <div className="absolute inset-0 w-full h-full transition-all duration-700">
+            <img
+              src={`https://image.tmdb.org/t/p/original/${movies[currentIndex].backdrop_path}`}
+              alt={movies[currentIndex].title}
+              className="w-full h-full object-cover opacity-70"
+            />
+          </div>
+
+          <div className="absolute top-1/4 left-1/2 transform -translate-x-1/2 text-white text-center w-3/4">
+            <h2 className="text-5xl font-bold leading-tight">
+              Discover Your Perfect <br /> Movie with <span className="text-[#fca311]">NextPick</span>
+            </h2>
+            <p className="text-lg text-[#e5e5e5] mt-4 mb-6 max-w-xl mx-auto">
+              Tired of endlessly scrolling through streaming platforms, unsure of what to watch? Let NextPick help you find the perfect movie match.
+            </p>
+            <button className="bg-[#fca311] text-[#fca311] px-8 py-3 rounded-full font-semibold hover:bg-[#ffb627] transition duration-300">
+              Start Quiz
+            </button>
+          </div>
+
+    
+          <button
+            onClick={prevSlide}
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-black/50 p-3 rounded-full text-white text-lg hover:bg-black transition"
+          >
+            <FaChevronLeft />
+          </button>
+          <button
+            onClick={nextSlide}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-black/50 p-3 rounded-full text-white text-lg hover:bg-black transition"
+          >
+            <FaChevronRight />
+          </button>
+
+          <div className="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-4">
+            {movies.map((movie, index) => (
+              <img
+                key={movie.id}
+                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                alt={movie.title}
+                className={`w-24 h-36 object-cover rounded-lg cursor-pointer transition ${
+                  index === currentIndex ? "border-4 border-[#fca311]" : "opacity-50"
+                }`}
+                onClick={() => setCurrentIndex(index)}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
+
+export default Carousel;
+
+
+          <input
+            type="text"
+            placeholder="Search by movie, actor, genre..."
+            className="bg-[#14213d] text-[#e5e5e5] px-4 py-1 rounded-md w-64 outlifne-none border border-[#e5e5e5] focus:ring-2 focus:ring-[#fca311] transition duration-300 hover:scale-110"
+          />
