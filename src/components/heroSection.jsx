@@ -1,9 +1,10 @@
 import React from 'react';
-import Navbar from './components/navbar';
-import MovieThumbnailsHome from './components/movieThumnails';
-import EndSection from './components/endSection';
-import Carousel from './components/Carousel';
-import GenreSection from './components/genreSection';
+
+import Navbar from './navbar';
+import MovieThumbnailsHome from './homepage/movieThumnails';
+import EndSection from './homepage/endSection';
+import Carousel from './homepage/Carousel';
+import GenreSection from './homepage/genreSection';
 
 const HeroSection = () => {
   return (

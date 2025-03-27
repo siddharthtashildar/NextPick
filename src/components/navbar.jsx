@@ -4,8 +4,11 @@ const Navbar = () => {
 
     return(
       <header className="fixed top-0 left-0 w-full h-5 flex justify-between items-center mb-12 py-1 pl-10 pr-10 mt-10 z-1000 animate-fade-up animate-once animate-ease-linear animate-fill-forwards">
+        
+        <h2 className="text-3xl font-extrabold">NextPick</h2>
+     
 
-        <h2 className="text-3xl font-bold">NextPick</h2>
+        
 
 
 

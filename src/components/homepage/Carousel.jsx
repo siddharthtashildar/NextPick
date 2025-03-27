@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchMoviesCarousel } from "../tmdbApi";
+import { fetchMoviesCarousel } from "../../tmdbApi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 

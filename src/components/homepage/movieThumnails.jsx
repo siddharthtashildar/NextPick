@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies , fetchNewReleaseMovies} from "../tmdbApi";
+import { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies , fetchNewReleaseMovies} from "../../tmdbApi";
 
 
 const MovieThumbnailsHome = () => {

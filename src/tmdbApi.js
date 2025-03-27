@@ -2,10 +2,6 @@ import axios from "axios";
 
 
 
-
-
-
-
 const TMDB_ACCESS_TOKEN = import.meta.env.VITE_TMDB_KEY;
 
 const tmdbApi = axios.create({
@@ -15,6 +11,17 @@ const tmdbApi = axios.create({
     Authorization: `Bearer ${TMDB_ACCESS_TOKEN}`,
   },
 });
+
+
+export const fetchUpcomingMoviesAuthPage = async(n) =>{
+  try {
+    const response = await tmdbApi.get("/movie/upcoming");
+    return response.data.results.slice(0,n); 
+  } catch (error) {
+    console.error("Error fetching movies:", error);
+    return [];
+  }
+}
 
 export const fetchMoviesCarousel = async (n) => {
   try {
