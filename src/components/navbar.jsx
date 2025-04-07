@@ -132,7 +132,7 @@ const Navbar = () => {
 
         <Link to='/quiz'>
           <button className="bg-[#fca311] text-black px-6 py-1 rounded-md font-semibold hover:bg-[#ffb627] transition duration-300 hover:scale-110">
-            Take Quiz
+            Quick Pick
           </button>
         </Link>
 

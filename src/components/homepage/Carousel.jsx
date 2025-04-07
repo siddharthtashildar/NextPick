@@ -74,7 +74,7 @@ const Carousel = () => {
             </p>
             <Link to='/quiz'>
               <button className="bg-transparent text-[#fca311] border-2 border-[#fca311] animate-fade-right animate-once animate-ease-linear px-8 py-3 rounded-md font-semibold hover:bg-[#fca311] hover:text-black transition duration-300 hover:scale-110">
-                Start Quiz
+                Quick Pick
               </button>
             </Link>
 

@@ -109,7 +109,7 @@ const SearchResults = () => {
 
 
 
-                <aside className="w-64 bg-[#1a1a2e] text-white sticky top-0 h-screen overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-300">
+                <aside className="w-64 bg-gray-900 text-white sticky top-0 h-screen overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-9000">
                     <h3 className="text-lg font-bold mb-4 mt-16">Filters</h3>
 
                     <button
@@ -159,7 +159,7 @@ const SearchResults = () => {
                             type="text"
                             value={keyword}
                             onChange={(e) => setKeyword(e.target.value)}
-                            className="w-full p-1 text-sm text-white bg-gray-900 opacity-75 rounded-md pl-10 focus:outline-none focus:bg-black focus:border-1 focus:text-gray-200"
+                            className="w-full p-1 text-sm text-white bg-black border-1 border-black opacity-75 rounded-md pl-10 focus:outline-none focus:bg-black focus:border-1 focus:text-gray-200"
                             placeholder="e.g. adventure, love"
                         />
                     </div>
@@ -171,7 +171,7 @@ const SearchResults = () => {
                             type="text"
                             value={actor}
                             onChange={(e) => setActor(e.target.value)}
-                            className="w-full p-1 text-sm text-white bg-gray-900 opacity-75 rounded-md pl-10 focus:outline-none focus:bg-black focus:border-1 focus:text-gray-200"
+                            className="w-full p-1 text-sm text-white bg-black border-1 border-black opacity-75 rounded-md pl-10 focus:outline-none focus:bg-black focus:border-1 focus:text-gray-200"
                             placeholder="e.g. Tom Cruise"
                         />
                     </div>

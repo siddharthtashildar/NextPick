@@ -7,6 +7,7 @@ import Carousel from './homepage/Carousel';
 import GenreSection from './homepage/genreSection';
 
 import { UserAuth } from "../context/AuthContext.jsx";
+import Footer from './homepage/Footer.jsx';
 
 const HeroSection = () => {
 
@@ -20,6 +21,7 @@ const HeroSection = () => {
       <MovieThumbnailsHome />
       <GenreSection />
       <EndSection />
+      <Footer />
     </div>
 
   );
