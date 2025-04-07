@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { fetchPopularMovies, fetchTopRatedMovies, fetchUpcomingMovies , fetchNewReleaseMovies} from "../../tmdbApi";
 
+import { Link } from "react-router-dom";
 
 const MovieThumbnailsHome = () => {
 
@@ -99,7 +100,7 @@ const MovieThumbnailsHome = () => {
                 <p className="text-xs text-[#fca311]">SELECTION</p>
                 <h2 className="text-lg font-bold"> A best movie just made for you</h2>
             </div>
-            <div className="justify-center gap-5 flex-wrap mt-10 animate-fade-up animate-once animate-ease-linear">
+            <div className="justify-center gap-5 flex-wrap mt-10 animate-fade-up animate-once animate-ease-linear ">
                 <button className={`bg-transparent text-white text-xs pb-3 pl-10 pr-10 relative hover:text-[#fca311]
                                     ${ForYoustyle ? "border-b-2 border-[#fca311]" : "" }`}
                 onClick={forYouToggle} >
@@ -129,16 +130,18 @@ const MovieThumbnailsHome = () => {
 
             {hpThumbnailmovies.length > 0 && (
 
-                <div className="mt-10 flex justify-center gap-6 flex-wrap pl-15 pr-15 animate-fade-up animate-once animate-ease-linear">
+                <div className="mt-10  flex justify-center gap-6 flex-wrap pl-15 pr-15 animate-fade-up animate-once animate-ease-linear">
                     {hpThumbnailmovies.map((movie, index) => (
 
                         <div key={index} className="w-60 h-84 bg-tranparent cursor-pointer shadow-md ">
-                            <img
-                                key={movie.id}
-                                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                                alt={movie.title}
-                                className="w-full h-full object-cover opacity-70 object-cover rounded-lg animate-fade-up animate-once animate-ease-linear transition-all duration-300 hover:scale-110 hover: opacity-100"
-                            />
+                            <Link to={`/view?movieid=${movie.id}`}>
+                                <img
+                                    key={movie.id}
+                                    src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                                    alt={movie.title}
+                                    className="w-full h-full object-cover opacity-70 object-cover rounded-lg animate-fade-up animate-once animate-ease-linear transition-all duration-300 hover:scale-110 hover: opacity-100"
+                                />
+                            </Link>
                         </div>
      
                     ))}

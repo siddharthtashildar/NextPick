@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { fetchMoviesCarousel } from "../../tmdbApi";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 
 const Carousel = () => {
   const [movies, setMovies] = useState([]);
@@ -26,7 +27,7 @@ const Carousel = () => {
     }, 7000);
 
     return () => clearInterval(interval);
-  }, [movies, currentIndex]); 
+  }, [movies, currentIndex]);
 
   const nextSlide = () => {
     setDirection(1);
@@ -61,7 +62,7 @@ const Carousel = () => {
             </motion.div>
           </AnimatePresence>
 
-          <div className="absolute top-60 left-140  transform -translate-x-1/2 text-white text-left w-3/4">
+          <div className="absolute top-60 left-[40%]  transform -translate-x-1/2 text-white text-left w-3/4">
             <h2 className="text-6xl font-bold leading-tight animate-fade-right animate-once animate-ease-linear">
               Discover Your Perfect <br /> Movie with{" "}
               <span className="text-[#fca311] ">NextPick</span>
@@ -71,9 +72,12 @@ const Carousel = () => {
               of what to watch? Let NextPick help you find the perfect movie
               match.
             </p>
-            <button className="bg-transparent text-[#fca311] border-2 border-[#fca311] animate-fade-right animate-once animate-ease-linear px-8 py-3 rounded-md font-semibold hover:bg-[#fca311] hover:text-black transition duration-300 hover:scale-110">
-              Start Quiz
-            </button>
+            <Link to='/quiz'>
+              <button className="bg-transparent text-[#fca311] border-2 border-[#fca311] animate-fade-right animate-once animate-ease-linear px-8 py-3 rounded-md font-semibold hover:bg-[#fca311] hover:text-black transition duration-300 hover:scale-110">
+                Start Quiz
+              </button>
+            </Link>
+
           </div>
 
           <button
@@ -89,25 +93,19 @@ const Carousel = () => {
             <FaChevronRight />
           </button>
 
-          <div className="absolute bottom-10 left-230 transform -translate-x-1/2 flex gap-4 items-end">
+          <div className="absolute bottom-10 left-535 transform -translate-x-1/2 flex gap-4 items-end">
             {currentMovies.map((movie, index) => (
-              <motion.img
-                key={movie.id}
-                src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
-                alt={movie.title}
-                initial={{ x: direction * 1000, opacity: 0 }}  
-                animate={{ x: 0, opacity: 1 }}
-                exit={{ x: -direction * 100, opacity: 0 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className={`w-44 h-66 object-cover rounded-lg cursor-pointer transition duration-300 hover:scale-110 ${index === 0 ? "w-54 h-76 opacity-100" : "opacity-70"
-                  }`}
-                onClick={() =>
-                  setCurrentMovies((prev) => {
-                    const clickedMovie = prev[index];
-                    return [clickedMovie, ...prev.filter((m) => m.id !== clickedMovie.id)];
-                  })
-                }
-              />
+              <Link to={`/view?movieid=${movie.id}`} key={movie.id} className={` w-44 h-76 flex items-end ${index === 0 ? "w-54 h-86 opacity-100" : "opacity-70"}`}>
+                <motion.img
+                  src={`https://image.tmdb.org/t/p/w200/${movie.poster_path}`}
+                  alt={movie.title}
+                  initial={{ x: direction * 1000, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -direction * 100, opacity: 0 }}
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className={`w-[100] h-[100] object-cover rounded-lg cursor-pointer transition duration-300 hover:scale-110`}
+                />
+              </Link>
             ))}
           </div>
         </>
