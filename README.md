@@ -1,6 +1,6 @@
-# 🎬 NextPick — Discover Your Perfect Movie Match
+# 🎬 NextPick - Your Personal Movie Genie!
 
-![NextPick Banner](./path/to/screenshot.png)
+
 
 Tired of endlessly scrolling through streaming platforms, unsure of what to watch?  
 **NextPick** helps you discover the perfect movie based on your preferences, quiz responses, and real-time suggestions — no more decision fatigue.
