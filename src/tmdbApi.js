@@ -77,10 +77,10 @@ export const fetchMovieById = async (movieId) => {
   try {
     const response = await tmdbApi.get(`/movie/${movieId}`, {
       params: {
-        append_to_response: "videos,credits", // Fetch trailers & cast info
+        append_to_response: "videos,credits", 
       },
     });
-    return response.data; // Return movie details
+    return response.data; 
   } catch (error) {
     console.error("Error fetching movie by ID:", error);
     return null;
@@ -103,7 +103,7 @@ export const fetchLanguageName = (code) => {
     pt: "Portuguese",
     nl: "Dutch",
     tr: "Turkish"
-    // Add more languages as needed
+    
   };
 
   return((languageMap[code] || code).toUpperCase()) ;
@@ -144,7 +144,7 @@ export const fetchMovieTrailer = async (movieId) => {
   try {
     const response = await tmdbApi.get(`/movie/${movieId}/videos`);
     
-    console.log("Movie Videos API Response:", response.data.results); // Debugging
+    console.log("Movie Videos API Response:", response.data.results); 
 
     const trailer = response.data.results.find(
       (video) => video.type === "Trailer" && video.site === "YouTube"
@@ -166,7 +166,7 @@ export const searchMovies = async (query, page = 1, filters = {}, category = nul
     let endpoint = "";
 
     if (category) {
-      endpoint = `/movie/${category}`; // e.g. popular, top_rated, upcoming
+      endpoint = `/movie/${category}`; 
     } else {
       endpoint = useSearchEndpoint ? "/search/movie" : "/discover/movie";
     }
@@ -214,8 +214,8 @@ export const fetchDiscoverMovies = async ({ genreId, keyword, minVote = 6, relea
         with_keywords: keyword,
         "vote_average.gte": minVote,
         "primary_release_date.gte": `${releaseYear}-01-01`,
-        with_original_language: "en", // Exclude Japanese/Korean etc.
-        without_genres: "16",         // 16 = Animation genre
+        with_original_language: "en", 
+        without_genres: "16",         
         language: "en-US",
       },
     });

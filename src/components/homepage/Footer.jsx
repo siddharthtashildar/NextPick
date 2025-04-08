@@ -11,13 +11,13 @@ const Footer = () => {
         </div>
 
         <div className="flex gap-6 text-xl">
-          <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+          <a href="https://github.com/siddharthtashildar" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
             <FaGithub />
           </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+          <a href="https://www.linkedin.com/in/siddharthtashildar/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
             <FaLinkedin />
           </a>
-          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
+          <a href="https://www.instagram.com/siddharthtashildar17/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition">
             <FaInstagram  />
           </a>
         </div>
