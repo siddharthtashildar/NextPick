@@ -1,12 +1,49 @@
-# React + Vite
+# 🎬 NextPick — Discover Your Perfect Movie Match
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![NextPick Banner](./path/to/screenshot.png)
 
-Currently, two official plugins are available:
+Tired of endlessly scrolling through streaming platforms, unsure of what to watch?  
+**NextPick** helps you discover the perfect movie based on your preferences, quiz responses, and real-time suggestions — no more decision fatigue.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- 🔍 **Smart Search** — Find movies by title, actor, or genre instantly
+- 🎯 **Quick Pick Mode** — Get a random movie suggestion in one click
+- 🧠 **Personalized Quizzes** — Built-in quiz to tailor suggestions to your taste
+- 📚 **Dynamic Movie Database** — Constantly growing & evolving
+- 👥 **User Authentication** — Secure login powered by Supabase
+- 📱 **Fully Responsive** — Works beautifully across all screen sizes
+
+---
+
+## 🛠️ Tech Stack
+
+| Frontend       | Backend       | Auth & DB      |
+| -------------- | ------------- | -------------- |
+| React.js       | Node.js       | Supabase       |
+| Tailwind CSS   | Express (optional) | Supabase Auth |
+| React Router   |               | PostgreSQL     |
+
+---
+
+## 📷 Screenshots
+
+> ![Homepage Screenshot](src/assets/ss.png)  
+> _"Discover Your Perfect Movie Match with NextPick"_
+
+---
+
+## 🧪 Running Locally
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/siddharthtashildar/NextPick.git
+cd nextpick
+
+# 2. Install dependencies
+npm install
+
+# 3. Add your Supabase credentials to a `.env` file
+VITE_SUPABASE_URL=your_supabase_
