@@ -157,47 +157,41 @@ export const fetchMovieTrailer = async (movieId) => {
   }
 };
 // tmdbApi.js
-export const searchMovies = async (query, page = 1, filters = {}) => {
+export const searchMovies = async (query, page = 1, filters = {}, category = null) => {
   try {
-    const useDiscover =
-      filters.genreIds?.length ||
-      filters.language ||
-      filters.keywordId ||
-      filters.actorId;
+    const { genreIds, language, keywordId, actorId } = filters;
 
-    const endpoint = useDiscover ? "/discover/movie" : "/search/movie";
+    const hasFilters = genreIds?.length || language || keywordId || actorId;
+    const useSearchEndpoint = query && !hasFilters;
+    let endpoint = "";
+
+    if (category) {
+      endpoint = `/movie/${category}`; // e.g. popular, top_rated, upcoming
+    } else {
+      endpoint = useSearchEndpoint ? "/search/movie" : "/discover/movie";
+    }
 
     const params = {
       page,
-      include_adult: false,
+      include_adult: true,
     };
 
-    if (useDiscover) {
-      if (filters.genreIds?.length) {
-        params.with_genres = filters.genreIds.join(",");
-      }
-      if (filters.language) {
-        params.with_original_language = filters.language;
-      }
-      if (filters.keywordId) {
-        params.with_keywords = filters.keywordId;
-      }
-      if (filters.actorId) {
-        params.with_cast = filters.actorId;
-      }
-      if (query) {
-        // Optional: add title filter when searching via discover
+    if (!category) {
+      if (useSearchEndpoint) {
         params.query = query;
+      } else {
+        if (genreIds?.length) params.with_genres = genreIds.join(",");
+        if (language) params.with_original_language = language;
+        if (keywordId) params.with_keywords = keywordId;
+        if (actorId) params.with_cast = actorId;
       }
-    } else {
-      params.query = query;
     }
 
-    const response = await tmdbApi.get(endpoint, { params });
+    const { data } = await tmdbApi.get(endpoint, { params });
 
     return {
-      results: response.data.results || [],
-      totalPages: response.data.total_pages || 1,
+      results: data.results || [],
+      totalPages: data.total_pages || 1,
     };
   } catch (error) {
     console.error("Error searching movies:", error);
@@ -215,7 +209,7 @@ export const fetchDiscoverMovies = async ({ genreId, keyword, minVote = 6, relea
       params: {
         with_genres: genreId,
         sort_by: "popularity.desc",
-        include_adult: false,
+        include_adult: true,
         page,
         with_keywords: keyword,
         "vote_average.gte": minVote,
@@ -260,6 +254,31 @@ export const searchKeywords = async (query) => {
 };
 
 
+export const getGenreNameById = (id) => {
+  const genreMap = {
+    28: "Action",
+    12: "Adventure",
+    16: "Animation",
+    35: "Comedy",
+    80: "Crime",
+    99: "Documentary",
+    18: "Drama",
+    10751: "Family",
+    14: "Fantasy",
+    36: "History",
+    27: "Horror",
+    10402: "Music",
+    9648: "Mystery",
+    10749: "Romance",
+    878: "Science Fiction",
+    10770: "TV Movie",
+    53: "Thriller",
+    10752: "War",
+    37: "Western",
+  };
+
+  return genreMap[id] || "Unknown";
+};
 
 
 

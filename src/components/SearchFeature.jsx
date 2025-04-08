@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import Navbar from "./navbar";
-import { searchMovies, getGenres, getLanguages, searchActors, searchKeywords } from "../tmdbApi";
+import { searchMovies, getGenres, getLanguages, searchActors, searchKeywords,getGenreNameById } from "../tmdbApi";
 
 
 
@@ -9,6 +9,9 @@ const SearchResults = () => {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const query = queryParams.get("q");
+    const genreFromURL = queryParams.get("genre");
+
+    console.log(genreFromURL);
 
     const [results, setResults] = useState([]);
     const [page, setPage] = useState(1);
@@ -27,22 +30,29 @@ const SearchResults = () => {
 
 
     useEffect(() => {
-        if (!query) return;
-
         const fetchFilters = async () => {
             const genreList = await getGenres();
             const languageList = await getLanguages();
             setGenres(genreList);
             setLanguages(languageList);
+
+            let genreId = genreFromURL ? parseInt(genreFromURL) : null;
+
+            if (genreId) {
+                setSelectedGenres([genreId]);
+                fetchResults(1, { genreIds: [genreId] });
+            } else if (query) {
+                fetchResults(1, {});
+            }
         };
 
-        fetchFilters(); // Fetch genres and languages
+        fetchFilters();
 
         setResults([]);
         setPage(1);
         setTotalPages(1);
-        fetchResults(1, {});
-    }, [query]);
+    }, [query, genreFromURL]);
+
 
     const fetchResults = async (pageNum, filters = {}) => {
         setLoading(true);
@@ -72,7 +82,12 @@ const SearchResults = () => {
     const handleLoadMore = () => {
         const nextPage = page + 1;
         setPage(nextPage);
-        fetchResults(nextPage, {});
+        fetchResults(nextPage, {
+            genreIds: selectedGenres,
+            language: selectedLanguage,
+            keywordId,
+            actorId
+        });
     };
 
     const handleGenreChange = (e) => {
@@ -109,7 +124,7 @@ const SearchResults = () => {
 
 
 
-                <aside className="w-64 bg-gray-900 text-white sticky top-0 h-screen overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-9000">
+                <aside className="w-64 bg-gray-900 text-white sticky top-0 h-screen overflow-y-auto p-4 scrollbar-thin scrollbar-thumb-gray-900 scrollbar-track-gray-900">
                     <h3 className="text-lg font-bold mb-4 mt-16">Filters</h3>
 
                     <button
@@ -179,7 +194,14 @@ const SearchResults = () => {
 
                 </aside>
                 <div className="px-20 pt-20  ">
-                    <h2 className="text-xl font-bold mb-16 text-left mt-16">Search results for: "{query}"</h2>
+                    <h2 className="text-xl font-bold mb-16 text-left mt-16">
+                        {query
+                            ? `Search results for: "${query}"`
+                            : genreFromURL
+                                ? `Search results for genre: "${getGenreNameById(genreFromURL)}"`
+                                : "Search results"}
+                    </h2>
+
                     {results.length === 0 && !loading ? (
                         <p>No results found.</p>
                     ) : (
